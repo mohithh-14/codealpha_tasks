@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
-data_dir = "E:/Programs/Plant/PlantVillage"
+data_dir = "E:/Programs/Plant/PlantVillage" #dataset path
 train_datagen = ImageDataGenerator(rescale=1./255, validation_split=0.2)
 train = train_datagen.flow_from_directory(
     data_dir,
@@ -21,7 +21,7 @@ model_filename = "plant_disease_model.keras"
 if os.path.exists(model_filename):
     print("Model already exists. Loading the model...")
     model = load_model(model_filename)
-    model.save("E:/Programs/Plant/plant_disease_model.keras")
+    model.save("E:/Programs/Plant/plant_disease_model.keras") #directory path
 else:
     print("Training new model...")
     model = Sequential([
@@ -31,7 +31,7 @@ else:
     model.summary()
     model.fit(train, validation_data=val, epochs=5)
     model.save(model_filename)
-img_path= r"E:\Programs\Plant\test_leaf.jpg"  
+img_path= r"E:\Programs\Plant\test_leaf.jpg"  #leaf image path
 img = load_img(img_path, target_size=(224, 224))
 img_array = img_to_array(img) / 255.0  
 img_array = np.expand_dims(img_array, axis=0)  
